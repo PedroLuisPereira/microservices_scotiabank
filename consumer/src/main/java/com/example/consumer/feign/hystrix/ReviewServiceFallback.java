@@ -2,9 +2,8 @@ package com.example.consumer.feign.hystrix;
 
 import com.example.consumer.model.Rating;
 import org.springframework.stereotype.Component;
-
 import com.example.consumer.feign.ReviewsFeignClient;
-import com.example.consumer.model.MovieReview;
+
 
 import java.util.ArrayList;
 

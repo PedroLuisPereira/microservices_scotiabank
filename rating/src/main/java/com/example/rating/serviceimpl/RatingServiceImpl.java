@@ -18,7 +18,12 @@ public class RatingServiceImpl implements RatingService {
     private List<Rating> list;
 
     public RatingServiceImpl() {
-        this.list = new ArrayList<Rating>();
+        list = new ArrayList<Rating>();
+        Rating rating = new Rating(1L, "5", 1L);
+        Rating rating2 = new Rating(2L, "3", 1L);
+
+        list.add(rating);
+        list.add(rating2);
     }
 
     @Override

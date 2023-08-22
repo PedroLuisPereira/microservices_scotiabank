@@ -15,7 +15,11 @@ public class BookServiceImpl implements BookService {
     private List<Book> list;
 
     public BookServiceImpl() {
-        this.list = new ArrayList<Book>();
+        list = new ArrayList<Book>();
+        Book book = new Book(1L, "Libro 1" , "Autor 1");
+        Book book2 = new Book(2L, "Libro 2" , "Autor 2");
+        list.add(book);
+        list.add(book2);
     }
 
     @Override

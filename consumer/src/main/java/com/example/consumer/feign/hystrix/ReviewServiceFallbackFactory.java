@@ -5,6 +5,8 @@ import feign.hystrix.FallbackFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PathVariable;
+
 import com.example.consumer.feign.ReviewsFeignClient;
 
 
@@ -23,8 +25,8 @@ public class ReviewServiceFallbackFactory implements FallbackFactory<ReviewsFeig
     public ReviewsFeignClient create(Throwable throwable) {
         return new ReviewsFeignClient() {
             @Override
-            public List<Rating> getMovieReviews() {
-                LOGGER.error("***************** Error *********************** ", throwable);
+            public List<Rating> getRatings(@PathVariable("bookId") Long bookId) {
+                LOGGER.error("Error al cargar ratings", throwable);
                 return new ArrayList<>();
             }
         };

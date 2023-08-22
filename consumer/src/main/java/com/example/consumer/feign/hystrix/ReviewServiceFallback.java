@@ -16,7 +16,7 @@ import java.util.List;
 public class ReviewServiceFallback implements ReviewsFeignClient {
 
     @Override
-    public List<Rating> getMovieReviews() {
+    public List<Rating> getRatings(Long bookId) {
         return new ArrayList<>();
     }
 }

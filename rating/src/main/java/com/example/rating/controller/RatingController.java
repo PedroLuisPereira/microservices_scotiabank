@@ -11,7 +11,7 @@ import com.example.rating.model.Rating;
 import com.example.rating.service.RatingService;
 
 @RestController
-@RequestMapping("api/ratings")
+@RequestMapping("")
 @CrossOrigin(origins = "*")
 public class RatingController {
 

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "rating-service", /*fallback = ReviewServiceFallback.class,*/ fallbackFactory = ReviewServiceFallbackFactory.class)
 public interface RatingFeignClient {
 
-    @GetMapping("/api/ratings/book/{bookId}")
+    @GetMapping("/book/{bookId}")
     List<Rating> getRatings(@PathVariable("bookId") Long bookId);
 }
 

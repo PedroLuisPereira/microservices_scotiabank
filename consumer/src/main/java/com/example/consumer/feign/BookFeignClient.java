@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "book-service", fallback = BookServiceFallback.class)
 public interface BookFeignClient {
 
-    @GetMapping("/api/books/{id}")
+    @GetMapping("/{id}")
     Book getBookById(@PathVariable("id") Long id);
 }
 

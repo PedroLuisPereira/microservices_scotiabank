@@ -18,7 +18,7 @@ public class ConsumerController {
     }
 
 
-    @GetMapping("/api/books/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Book> getBook(@PathVariable("id") Long id) {
 
         Book book = consumerService.findById(id);

@@ -1,4 +1,4 @@
-package com.example.book.controller;
+package com.example.rating.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

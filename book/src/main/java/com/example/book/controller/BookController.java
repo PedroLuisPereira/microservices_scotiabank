@@ -13,7 +13,7 @@ import com.example.book.service.BookService;
 @RestController
 @RequestMapping("api/books")
 @CrossOrigin(origins = "*")
-public class BonoController {
+public class BookController {
 
     @Autowired
     BookService bookService;

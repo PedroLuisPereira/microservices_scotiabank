@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
-@FeignClient(name = "book", fallback = BookServiceFallback.class)
+@FeignClient(name = "book-service", fallback = BookServiceFallback.class)
 public interface BookFeignClient {
 
     @GetMapping("/api/books/{id}")

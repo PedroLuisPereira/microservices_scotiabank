@@ -3,7 +3,7 @@ package com.example.authserver.dto;
 import java.io.Serializable;
 import java.util.List;
 
-public class User implements Serializable {
+public class Usuario implements Serializable {
 
     private Long id;
 
@@ -16,7 +16,7 @@ public class User implements Serializable {
 
     private List<Role> roles;
 
-    public User(Long id, String username, String password, boolean enabled, String nombre, String apellido,
+    public Usuario(Long id, String username, String password, boolean enabled, String nombre, String apellido,
             String email) {
         this.id = id;
         this.username = username;
@@ -29,7 +29,7 @@ public class User implements Serializable {
 
     
 
-    public User(Long id, String username, String password, boolean enabled, String nombre, String apellido,
+    public Usuario(Long id, String username, String password, boolean enabled, String nombre, String apellido,
             String email, List<Role> roles) {
         this.id = id;
         this.username = username;
@@ -106,5 +106,15 @@ public class User implements Serializable {
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
+
+
+
+    @Override
+    public String toString() {
+        return "Usuario [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
+                + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", roles=" + roles + "]";
+    }
+
+    
 
 }

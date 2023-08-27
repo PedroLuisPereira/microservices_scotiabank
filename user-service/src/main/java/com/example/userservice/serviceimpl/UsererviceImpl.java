@@ -73,4 +73,12 @@ public class UsererviceImpl implements UserService {
         list.remove(user);
     }
 
+    @Override
+    public User findByUsername(String userName) {
+        return list.stream()
+                .filter(usuario -> Objects.equals(usuario.getUsername(), userName))
+                .findFirst()
+                .orElseThrow(() -> new RegistroNoEncontradoException("Registro no encontrado"));
+    }
+
 }

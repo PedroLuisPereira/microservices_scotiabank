@@ -1,12 +1,14 @@
-package com.example.zuulserver;
+package com.example.authserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 
 @EnableEurekaClient
 @SpringBootApplication
+@EnableFeignClients
 public class AuthServerApplication {
 
     public static void main(String[] args) {

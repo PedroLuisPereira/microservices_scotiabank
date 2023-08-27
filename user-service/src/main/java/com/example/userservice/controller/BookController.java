@@ -32,6 +32,12 @@ public class BookController {
         return userService.findById(id);
     }
 
+    @GetMapping("/username/{username}")
+    @ResponseStatus(HttpStatus.OK)
+    public User listarPorUsername(@PathVariable String username) {
+        return userService.findByUsername(username);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public User crear(@RequestBody UserDto userDto) {

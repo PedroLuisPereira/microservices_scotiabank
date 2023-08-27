@@ -1,6 +1,5 @@
 package com.example.authserver.security;
 
-import org.apache.naming.java.javaURLContextFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,14 +25,27 @@ public class AuthorizacionServerConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        // TODO Auto-generated method stub
         super.configure(security);
+        security
+                .tokenKeyAccess("permitAll()")
+                .checkTokenAccess("isAuthenticated");
     }
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        // TODO Auto-generated method stub
         super.configure(clients);
+
+        clients
+                .inMemory()
+                .withClient("FrontendId")
+                .secret(bCryptPasswordEncoder.encode("123456"))
+                .scopes("read", "write")
+                .authorizedGrantTypes("password", "refresh_token")
+                .accessTokenValiditySeconds(3600)
+                .refreshTokenValiditySeconds(3600);
+
+        // .and(). otro cliente
+
     }
 
     @Override

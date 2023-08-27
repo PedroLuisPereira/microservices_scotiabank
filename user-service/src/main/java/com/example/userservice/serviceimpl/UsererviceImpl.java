@@ -22,9 +22,9 @@ public class UsererviceImpl implements UserService {
         Role roleAdmin = new Role(1l, "ROLE_ADMIN");
 
         list = Arrays.asList(
-                new User(1l, "user@email.com", "12345", true, "Juan", "Matinez", "user@email.com",
+                new User(1l, "user@email.com", "$2a$10$M9Bk2c0o0NZICjjlVvMn9eM9itjO1c9A7as1u2J8GzOkcQveLP.9m", true, "Juan", "Matinez", "user@email.com",
                         Arrays.asList(roleUser, roleAdmin)),
-                new User(2l, "user2@email.com", "12345", true, "Maria", "Matinez", "user2@email.com",
+                new User(2l, "user2@email.com", "$2a$10$MveJbvD/o2TThRGhXzNVWe7i2Wls1B9o.yOvijvgTJa2A81bgroUe", true, "Maria", "Matinez", "user2@email.com",
                         Arrays.asList(roleUser)));
     }
 

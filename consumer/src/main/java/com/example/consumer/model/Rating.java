@@ -55,4 +55,10 @@ public class Rating {
     public int hashCode() {
         return Objects.hash(id, stars, bookId);
     }
+
+    @Override
+    public String toString() {
+        return "Rating [id=" + id + ", stars=" + stars + ", bookId=" + bookId + "]";
+    }
+
 }

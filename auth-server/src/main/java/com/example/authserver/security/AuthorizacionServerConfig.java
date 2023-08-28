@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -20,6 +21,9 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 public class AuthorizacionServerConfig extends AuthorizationServerConfigurerAdapter {
 
     private Logger logger = LoggerFactory.getLogger(AuthorizacionServerConfig.class);
+
+    @Autowired
+    private Environment environment;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -46,8 +50,8 @@ public class AuthorizacionServerConfig extends AuthorizationServerConfigurerAdap
 
         clients
                 .inMemory()
-                .withClient("FrontendId")
-                .secret(bCryptPasswordEncoder.encode("12345"))
+                .withClient(environment.getProperty("config.security.oauth.client.id"))
+                .secret(bCryptPasswordEncoder.encode(environment.getProperty("config.security.oauth.client.secret")))
                 .scopes("read", "write")
                 .authorizedGrantTypes("password", "refresh_token")
                 .accessTokenValiditySeconds(3600)
@@ -59,7 +63,6 @@ public class AuthorizacionServerConfig extends AuthorizationServerConfigurerAdap
      */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        // super.configure(endpoints);
 
         logger.info("Entro a AuthorizationServerEndpointsConfigurer");
 
@@ -75,7 +78,7 @@ public class AuthorizacionServerConfig extends AuthorizationServerConfigurerAdap
         logger.info("Entro a JwtAccessTokenConverter");
 
         JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
-        jwtAccessTokenConverter.setSigningKey("clave123456789");
+        jwtAccessTokenConverter.setSigningKey(environment.getProperty("config.security.oauth.jwt.key"));
         return jwtAccessTokenConverter;
     }
 

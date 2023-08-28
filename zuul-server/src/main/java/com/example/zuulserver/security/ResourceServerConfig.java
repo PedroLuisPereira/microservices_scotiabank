@@ -2,8 +2,10 @@ package com.example.zuulserver.security;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
@@ -18,6 +20,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     private Logger logger = LoggerFactory.getLogger(ResourceServerConfig.class);
 
+    @Autowired
+    private Environment environment;
+
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
         // super.configure(resources);
@@ -26,7 +31,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        // super.configure(http);
+        logger.info("Entro a configure");
+
         http
                 .authorizeRequests()
                 .antMatchers("/api/auth/oauth/**").permitAll()
@@ -42,7 +48,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         logger.info("Entro a JwtAccessTokenConverter");
 
         JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
-        jwtAccessTokenConverter.setSigningKey("clave123456789");
+        jwtAccessTokenConverter.setSigningKey(environment.getProperty("config.security.oauth.jwt.key"));
         return jwtAccessTokenConverter;
     }
 

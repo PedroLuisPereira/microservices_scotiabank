@@ -22,4 +22,9 @@ public class RatingDto {
         this.bookId = bookId;
     }
 
+    @Override
+    public String toString() {
+        return "RatingDto [star=" + star + ", bookId=" + bookId + "]";
+    }
+
 }

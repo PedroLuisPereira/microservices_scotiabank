@@ -19,7 +19,7 @@ public class UsererviceImpl implements UserService {
     public UsererviceImpl() {
 
         Role roleUser = new Role(1l, "ROLE_USER");
-        Role roleAdmin = new Role(1l, "ROLE_ADMIN");
+        Role roleAdmin = new Role(2l, "ROLE_ADMIN");
 
         list = Arrays.asList(
                 new User(1l, "user@email.com", "$2a$10$M9Bk2c0o0NZICjjlVvMn9eM9itjO1c9A7as1u2J8GzOkcQveLP.9m", true, "Juan", "Matinez", "user@email.com",

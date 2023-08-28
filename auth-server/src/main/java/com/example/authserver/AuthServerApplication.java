@@ -9,8 +9,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @EnableEurekaClient
-@SpringBootApplication
 @EnableFeignClients
+@SpringBootApplication
 public class AuthServerApplication implements CommandLineRunner {
 
     @Autowired

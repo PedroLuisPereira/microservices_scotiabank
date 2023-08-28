@@ -29,5 +29,10 @@ public class BookDto {
     public void setAuthor(String author) {
         this.author = author;
     }
-    
+
+    @Override
+    public String toString() {
+        return "BookDto [title=" + title + ", author=" + author + "]";
+    }
+
 }

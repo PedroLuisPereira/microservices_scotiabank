@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.example.authserver.dto.Usuario;
 
 
-
 @FeignClient(name = "user-service")
 public interface UserFeignClient {
 

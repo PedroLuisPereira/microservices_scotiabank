@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Usuario implements Serializable {
 
+    private static final long serialVersionUID = 1234567L;
+
     private Long id;
 
     private String username;
@@ -16,6 +18,10 @@ public class Usuario implements Serializable {
 
     private List<Role> roles;
 
+    public Usuario() {
+    }
+
+
     public Usuario(Long id, String username, String password, boolean enabled, String nombre, String apellido,
             String email) {
         this.id = id;
@@ -26,7 +32,6 @@ public class Usuario implements Serializable {
         this.apellido = apellido;
         this.email = email;
     }
-
     
 
     public Usuario(Long id, String username, String password, boolean enabled, String nombre, String apellido,

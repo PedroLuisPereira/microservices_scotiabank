@@ -5,16 +5,20 @@ import java.util.List;
 
 public class User implements Serializable {
 
-    private Long id;
+    private static final long serialVersionUID = 1234567L;
 
-    private String username;
-    private String password;
-    private boolean enabled;
+    private Long id;
     private String nombre;
     private String apellido;
     private String email;
+    private String username;
+    private String password;
+    private boolean enabled;
 
     private List<Role> roles;
+
+    public User() {
+    }
 
     public User(Long id, String username, String password, boolean enabled, String nombre, String apellido,
             String email) {
@@ -27,8 +31,6 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    
-
     public User(Long id, String username, String password, boolean enabled, String nombre, String apellido,
             String email, List<Role> roles) {
         this.id = id;
@@ -40,8 +42,6 @@ public class User implements Serializable {
         this.email = email;
         this.roles = roles;
     }
-
-
 
     public Long getId() {
         return id;
@@ -105,6 +105,12 @@ public class User implements Serializable {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", username="
+                + username + ", password=" + password + ", enabled=" + enabled + ", roles=" + roles + "]";
     }
 
 }

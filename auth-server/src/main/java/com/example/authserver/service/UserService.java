@@ -17,6 +17,8 @@ import org.springframework.stereotype.Service;
 import com.example.authserver.dto.Usuario;
 import com.example.authserver.feign.UserFeignClient;
 
+import feign.FeignException;
+
 @Service
 public class UserService implements UserDetailsService {
 
@@ -31,28 +33,29 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Usuario usuario = userFeignClient.getUserByUsername(username);
+        try {
 
-        // ************validar error *****************
-        if (usuario == null) {
-            throw new UsernameNotFoundException("Usuario es null");
+            Usuario usuario = userFeignClient.getUserByUsername(username);
+
+            logger.info("Se consulta al usuario: " + usuario);
+
+            List<GrantedAuthority> grantedAuthorities = usuario.getRoles()
+                    .stream()
+                    .map(role -> new SimpleGrantedAuthority(role.getNombre()))
+                    .peek(authority -> logger.info("Rol: " + authority.getAuthority()))
+                    .collect(Collectors.toList());
+
+            return new User(usuario.getUsername(),
+                    usuario.getPassword(),
+                    usuario.getEnabled(),
+                    true,
+                    true,
+                    true,
+                    grantedAuthorities);
+
+        } catch (FeignException e) {
+            throw new UsernameNotFoundException("Usuario no existe");
         }
-
-        logger.info("Se consulta al usuario: " + usuario);
-
-        List<GrantedAuthority> grantedAuthorities = usuario.getRoles()
-                .stream()
-                .map(role -> new SimpleGrantedAuthority(role.getNombre()))
-                .peek(authority -> logger.info("Rol: " + authority.getAuthority()))
-                .collect(Collectors.toList());
-
-        return new User(usuario.getUsername(),
-                usuario.getPassword(),
-                usuario.getEnabled(),
-                true,
-                true,
-                true,
-                grantedAuthorities);
     }
 
 }

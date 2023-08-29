@@ -1,8 +1,8 @@
-package com.example.book.controller;
+package com.example.rating.controller;
 
-import com.example.book.dto.BookDto;
-import com.example.book.model.Book;
-import com.example.book.service.BookService;
+import com.example.rating.dto.RatingDto;
+import com.example.rating.model.Rating;
+import com.example.rating.service.RatingService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,21 +13,22 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.hamcrest.Matchers.is;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class BookControllerTest {
+class RatingControllerTest {
+
 
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
-    BookService bookService;
+    RatingService ratingService;
 
     @Test
-    void debeListarTodosLosBooks() throws Exception {
+    void debeListarTodosLosRatings() throws Exception {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/").contentType(MediaType.APPLICATION_JSON))
           .andExpect(MockMvcResultMatchers
@@ -36,12 +37,12 @@ class BookControllerTest {
           .andExpect(MockMvcResultMatchers
             .content()
             .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-          .andExpect(jsonPath("$[0].title", is("Libro 1")));
+          .andExpect(jsonPath("$[0].stars", is("5")));
         ;
     }
 
     @Test
-    void debeListarUnBook() throws Exception {
+    void debeListarUnRating() throws Exception {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/1").contentType(MediaType.APPLICATION_JSON))
           .andExpect(MockMvcResultMatchers
@@ -50,7 +51,7 @@ class BookControllerTest {
           .andExpect(MockMvcResultMatchers
             .content()
             .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-          .andExpect(jsonPath("$.title", is("Libro 1")));
+          .andExpect(jsonPath("$.stars", is("5")));
         ;
     }
 
@@ -69,12 +70,12 @@ class BookControllerTest {
     }
 
     @Test
-    void debeCrearUnaBook() throws Exception {
+    void debeCrearUnRating() throws Exception {
 
-        BookDto bookDto = new BookDto("Libro 3", "Autor 3");
+        RatingDto ratingDto = new RatingDto("3", 1L);
 
         mockMvc.perform(MockMvcRequestBuilders.post("/")
-            .content(asJsonString(bookDto))
+            .content(asJsonString(ratingDto))
             .contentType(MediaType.APPLICATION_JSON)
             .accept(MediaType.APPLICATION_JSON))
           .andExpect(MockMvcResultMatchers
@@ -83,21 +84,21 @@ class BookControllerTest {
           .andExpect(MockMvcResultMatchers
             .content()
             .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-          .andExpect(jsonPath("$.title", is("Libro 3")));
+          .andExpect(jsonPath("$.stars", is("3")));
         ;
     }
 
     @Test
-    void debeActualizarUnBook() throws Exception {
+    void debeActualizarUnRating() throws Exception {
 
-        Book book = new Book(null, "Libro 3", "Autor 3");
+        Rating rating = new Rating(null, "4", 1L);
 
-        book = bookService.save(book);
+        rating = ratingService.save(rating);
 
-        BookDto bookDto = new BookDto("Libro 4", "Autor 4");
+        RatingDto ratingDto = new RatingDto("3", 1L);
 
-        mockMvc.perform(MockMvcRequestBuilders.put("/" + book.getId())
-            .content(asJsonString(bookDto))
+        mockMvc.perform(MockMvcRequestBuilders.put("/" + rating.getId())
+            .content(asJsonString(ratingDto))
             .contentType(MediaType.APPLICATION_JSON)
             .accept(MediaType.APPLICATION_JSON))
           .andExpect(MockMvcResultMatchers
@@ -106,17 +107,18 @@ class BookControllerTest {
           .andExpect(MockMvcResultMatchers
             .content()
             .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-          .andExpect(jsonPath("$.title", is("Libro 4")));
+          .andExpect(jsonPath("$.stars", is("3")));
         ;
     }
 
     @Test
-    void debeEliminarUnBook() throws Exception {
+    void debeEliminarUnRating() throws Exception {
 
-        Book book = new Book(null, "Libro 3", "Autor 3");
-        book = bookService.save(book);
+        Rating rating = new Rating(null, "4", 1L);
 
-        mockMvc.perform(MockMvcRequestBuilders.delete("/" + book.getId())
+        rating = ratingService.save(rating);
+
+        mockMvc.perform(MockMvcRequestBuilders.delete("/" + rating.getId())
             .contentType(MediaType.APPLICATION_JSON))
           .andExpect(MockMvcResultMatchers
             .status()
@@ -132,3 +134,5 @@ class BookControllerTest {
         }
     }
 }
+
+

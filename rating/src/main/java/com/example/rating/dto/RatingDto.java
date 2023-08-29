@@ -6,6 +6,14 @@ public class RatingDto {
 
     private Long bookId;
 
+    public RatingDto() {
+    }
+
+    public RatingDto(String star, Long bookId) {
+        this.star = star;
+        this.bookId = bookId;
+    }
+
     public String getStar() {
         return star;
     }

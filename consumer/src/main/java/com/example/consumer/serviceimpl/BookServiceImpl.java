@@ -1,9 +1,9 @@
-package com.example.consumer.ServiceImpl;
+package com.example.consumer.serviceimpl;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import com.example.consumer.Service.BookService;
+import com.example.consumer.service.BookService;
 import com.example.consumer.feign.BookFeignClient;
 import com.example.consumer.model.Book;
 

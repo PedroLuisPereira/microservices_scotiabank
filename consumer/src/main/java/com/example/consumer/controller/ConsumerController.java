@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.consumer.Service.ConsumerService;
+import com.example.consumer.service.ConsumerService;
 
 @RestController
 public class ConsumerController {
@@ -25,11 +25,11 @@ public class ConsumerController {
     @GetMapping("/{id}")
     public ResponseEntity<Book> getBook(@PathVariable("id") Long id) {
 
-        logger.info("Consultar book con id: " + id);
+        logger.info("Consultar book con id: {}", id);
 
         Book book = consumerService.findById(id);
 
-        logger.info("Consulta de book " + book);
+        logger.info("Consulta de book con sus ratings {}", book);
 
         return ResponseEntity.ok(book);
 

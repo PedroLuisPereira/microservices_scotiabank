@@ -16,6 +16,12 @@ public class Book {
     public Book() {
     }
 
+    public Book(Long id, String title, String author) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+    }
+
     public Book(Long id, String title, String author, List<Rating> ratingList) {
         this.id = id;
         this.title = title;

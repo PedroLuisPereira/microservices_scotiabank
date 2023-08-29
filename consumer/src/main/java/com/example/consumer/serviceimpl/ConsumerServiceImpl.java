@@ -1,11 +1,11 @@
-package com.example.consumer.ServiceImpl;
+package com.example.consumer.serviceimpl;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import com.example.consumer.Service.BookService;
-import com.example.consumer.Service.ConsumerService;
-import com.example.consumer.Service.RatingService;
+import com.example.consumer.service.BookService;
+import com.example.consumer.service.ConsumerService;
+import com.example.consumer.service.RatingService;
 import com.example.consumer.exception.RegistroNoEncontradoException;
 import com.example.consumer.model.Book;
 import com.example.consumer.model.Rating;

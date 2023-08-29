@@ -10,12 +10,12 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.core.ParameterizedTypeReference;
 
 @RestController
-class ZipkinController {
+class RestTemplateController {
 
     @Autowired
     RestTemplate restTemplate;
 
-    private static final Logger LOG = Logger.getLogger(ZipkinController.class.getName());
+    private static final Logger LOG = Logger.getLogger(RestTemplateController.class.getName());
 
     @GetMapping(value = "/zipkin")
     public String zipkinService1() {

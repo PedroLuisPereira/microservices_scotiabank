@@ -2,7 +2,6 @@ package com.example.consumer.controller;
 
 import com.example.consumer.service.BookService;
 import com.example.consumer.service.RatingService;
-import com.example.consumer.exception.RegistroNoEncontradoException;
 import com.example.consumer.model.Book;
 import com.example.consumer.model.Rating;
 import org.junit.jupiter.api.Test;
